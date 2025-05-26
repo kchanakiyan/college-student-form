@@ -1,53 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Student Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration Form</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Student Registration Form</h2>
+  <div class="container">
+    <h2>Student Registration Form</h2>
+    
+    <form id="studentForm">
+      <label for="name">Full Name</label>
+      <input id="name" name="name" placeholder="Enter your name" required />
 
-  <form id="studentForm">
-    <input name="name" placeholder="Name" required />
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
 
-<select name="gender" required>
-      <option value="">Select Gender</option>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
-    </select>
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required />
 
-    <input type="date" id = "DOB" name="dob" required />
+      <label for="field">Engineering Field</label>
+      <select id="field" name="field" required>
+        <option value="">Select Field</option>
+        <option>Computer Engineering</option>
+        <option>Civil Engineering</option>
+        <option>Mechanical Engineering</option>
+        <option>Electrical Engineering</option>
+        <option>Chemical Engineering</option>
+        <option>Aerospace Engineering</option>
+        <option>Biomedical Engineering</option>
+        <option>Environmental Engineering</option>
+        <option>Industrial Engineering</option>
+        <option>Materials Engineering</option>
+        <option>Petroleum Engineering</option>
+        <option>Others</option>
+      </select>
 
-    <select name="field" required>
-      <option value="">Select Field</option>
-      <option>Computer Engineering</option>
-      <option>Civil Engineering</option>
-      <option>Mechanical Engineering</option>
-      <option>Electrical Engineering</option>
-      <option>Chemical Engineering</option>
-      <option>Aerospace Engineering</option>
-      <option>Biomedical Engineering</option>
-      <option>Environmental Engineering</option>
-      <option>Industrial Engineering</option>
-      <option>Materials Engineering</option>
-      <option>Petroleum Engineering</option>
-      <option>Others</option>
-    </select>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-    <input type="email" name="email" placeholder="Email" required />
+      <label for="quota">Quota</label>
+      <select id="quota" name="quota" required>
+        <option value="">Select Quota</option>
+        <option value="GQ">GQ</option>
+        <option value="MQ">MQ</option>
+      </select>
 
-    <select name="quota" required>
-      <option value="">Select Quota</option>
-      <option value="GQ">GQ</option>
-      <option value="MQ">MQ</option>
-    </select>
+      <label for="location">Location</label>
+      <input id="location" name="location" placeholder="Enter your location" />
 
-    <input name="location" placeholder="Location" />
-
-    <button type="submit">Submit</button>
-  </form>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
   <script>
     document.getElementById('studentForm').addEventListener('submit', async function(e) {
@@ -64,12 +74,13 @@
 
         const result = await response.json();
         if (response.ok) {
-          alert(result.message || 'Student saved!');
+          alert(result.message || 'Student registered successfully!');
+          this.reset(); // clear the form
         } else {
           alert(result.error || 'Submission failed.');
         }
       } catch (err) {
-        alert('Error: Could not connect to backend.');
+        alert('Error: Could not connect to the backend.');
       }
     });
   </script>
